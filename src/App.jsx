@@ -1,13 +1,112 @@
 import React from 'react';
+import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
+  state = {
+    destination: '',
+    conditions: null,
+    errorMessage: '',
+    isLoading: false
+  };
+
+  handleDestinationChange = (event) => {
+    this.setState({ destination: event.target.value });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const destination = this.state.destination.trim();
+
+    if (!destination) {
+      this.setState({
+        conditions: null,
+        errorMessage: 'Please enter an Oregon destination.'
+      });
+      return;
+    }
+
+    this.setState({
+      conditions: null,
+      errorMessage: '',
+      isLoading: true
+    });
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/conditions`,
+        { params: { destination } }
+      );
+
+      this.setState({ conditions: response.data });
+    } catch (error) {
+      this.setState({
+        errorMessage: error.response?.data?.error || 'Unable to retrieve weather conditions.'
+      });
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  };
+
   render() {
+    const { destination, conditions, errorMessage, isLoading } = this.state;
+
     return (
       <Container className="py-5 text-center">
         <h1>Oregon Trip Ready</h1>
         <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+
+        <section className="mb-5" aria-labelledby="weather-search-heading">
+          <h2 id="weather-search-heading">Search Oregon Weather</h2>
+          <Form className="mx-auto mb-4" onSubmit={this.handleSubmit}>
+            <Form.Group className="mb-3" controlId="destination">
+              <Form.Label>Oregon destination</Form.Label>
+              <Form.Control
+                type="text"
+                value={destination}
+                onChange={this.handleDestinationChange}
+                placeholder="Enter a city or destination"
+              />
+            </Form.Group>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? 'Searching...' : 'Search Weather'}
+            </Button>
+          </Form>
+
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+
+          {conditions && (
+            <Card className="mx-auto">
+              <Card.Body>
+                <Card.Title>
+                  {conditions.destination}, {conditions.state}
+                </Card.Title>
+                <Card.Text as="div">
+                  <dl>
+                    <dt>Temperature</dt>
+                    <dd>{Math.round(conditions.weather.temperature)}°F</dd>
+                    <dt>Feels like</dt>
+                    <dd>{Math.round(conditions.weather.feelsLike)}°F</dd>
+                    <dt>Humidity</dt>
+                    <dd>{conditions.weather.humidity}%</dd>
+                    <dt>Condition</dt>
+                    <dd>{conditions.weather.condition}</dd>
+                    <dt>Description</dt>
+                    <dd>{conditions.weather.description}</dd>
+                    <dt>Wind speed</dt>
+                    <dd>{Math.round(conditions.weather.windSpeed)} mph</dd>
+                  </dl>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+        </section>
+
         <section>
           <h2>Air Quality and Wildfire Smoke</h2>
           <p>View current air-quality and wildfire-smoke conditions for your destination.</p>
