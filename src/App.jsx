@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import logo from './assets/logo.png';
-import { FaMountain } from 'react-icons/fa';
+import { FaCloudSun, FaMountain } from 'react-icons/fa';
 import { GiEarthCrack } from 'react-icons/gi';
 import { MdThunderstorm } from 'react-icons/md';
 
@@ -73,59 +73,79 @@ class App extends React.Component {
   <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
 </header>  
 
-        <section className="weather-search-section" aria-labelledby="weather-search-heading">
-          <h2 id="weather-search-heading">Search Oregon Weather</h2>
-          <Form className="weather-search-form" onSubmit={this.handleSubmit}>
-            <Form.Group className="mb-3" controlId="destination">
-              <Form.Label>Oregon destination</Form.Label>
-              <Form.Control
-                type="text"
-                value={destination}
-                onChange={this.handleDestinationChange}
-                placeholder="Enter a city or destination"
-              />
-            </Form.Group>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Searching...' : 'Search Weather'}
-            </Button>
-          </Form>
+ <section
+  className="weather-search-section"
+  aria-labelledby="weather-search-heading"
+>
+  <div className="primary-section-layout">
+    <div className="primary-section-icon weather-section-icon">
+      <FaCloudSun aria-hidden="true" />
+    </div>
 
-          <p className="visually-hidden" role="status" aria-live="polite">
-            {isLoading ? 'Weather information is loading.' : ''}
-          </p>
+    <div className="primary-section-content">
+      <h2 id="weather-search-heading">Search Oregon Weather</h2>
 
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+      <Form className="weather-search-form" onSubmit={this.handleSubmit}>
+        <Form.Group className="mb-3" controlId="destination">
+          <Form.Label>Oregon destination</Form.Label>
 
-          {conditions && (
-            <Card
-              className="weather-card"
-              role="region"
-              aria-labelledby="weather-result-heading"
-            >
-              <Card.Body>
-                <Card.Title as="h3" id="weather-result-heading">
-                  {conditions.destination}, {conditions.state}
-                </Card.Title>
-                <Card.Text as="div">
-                  <dl className="weather-details-grid">
-                    <dt>Temperature</dt>
-                    <dd>{Math.round(conditions.weather.temperature)}°F</dd>
-                    <dt>Feels like</dt>
-                    <dd>{Math.round(conditions.weather.feelsLike)}°F</dd>
-                    <dt>Humidity</dt>
-                    <dd>{conditions.weather.humidity}%</dd>
-                    <dt>Condition</dt>
-                    <dd>{conditions.weather.condition}</dd>
-                    <dt>Description</dt>
-                    <dd>{conditions.weather.description}</dd>
-                    <dt>Wind speed</dt>
-                    <dd>{Math.round(conditions.weather.windSpeed)} mph</dd>
-                  </dl>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          )}
-        </section>
+          <Form.Control
+            type="text"
+            value={destination}
+            onChange={this.handleDestinationChange}
+            placeholder="Enter a city or destination"
+          />
+        </Form.Group>
+
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? 'Searching...' : 'Search Weather'}
+        </Button>
+      </Form>
+
+      <p className="visually-hidden" role="status" aria-live="polite">
+        {isLoading ? 'Weather information is loading.' : ''}
+      </p>
+
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+
+      {conditions && (
+        <Card
+          className="weather-card"
+          role="region"
+          aria-labelledby="weather-result-heading"
+        >
+          <Card.Body>
+            <Card.Title as="h3" id="weather-result-heading">
+              {conditions.destination}, {conditions.state}
+            </Card.Title>
+
+            <Card.Text as="div">
+              <dl className="weather-details-grid">
+                <dt>Temperature</dt>
+                <dd>{Math.round(conditions.weather.temperature)}°F</dd>
+
+                <dt>Feels like</dt>
+                <dd>{Math.round(conditions.weather.feelsLike)}°F</dd>
+
+                <dt>Humidity</dt>
+                <dd>{conditions.weather.humidity}%</dd>
+
+                <dt>Condition</dt>
+                <dd>{conditions.weather.condition}</dd>
+
+                <dt>Description</dt>
+                <dd>{conditions.weather.description}</dd>
+
+                <dt>Wind speed</dt>
+                <dd>{Math.round(conditions.weather.windSpeed)} mph</dd>
+              </dl>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      )}
+    </div>
+  </div>
+</section>
 
         <section
           className="information-section tripcheck-section"
@@ -158,6 +178,74 @@ class App extends React.Component {
           </Button>
           <p className="external-link-note">Opens the official AirNow map in a new tab.</p>
         </section>
+
+        <nav
+  className="resource-links"
+  aria-label="Additional Oregon safety resources"
+>
+  <a
+    className="resource-icon-link avalanche-link"
+    href="https://nwac.us/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open avalanche information in a new tab"
+  >
+    <FaMountain aria-hidden="true" />
+    <span className="resource-tooltip">
+      Avalanche info
+    </span>
+  </a>
+
+  <a
+    className="resource-icon-link nws-link"
+    href="https://www.weather.gov/alerts"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open National Weather Service alerts in a new tab"
+  >
+    <MdThunderstorm aria-hidden="true" />
+    <span className="resource-tooltip">
+      NWS Alerts
+    </span>
+  </a>
+
+  <a
+    className="resource-icon-link earthquake-link"
+    href="https://earthquake.usgs.gov/earthquakes/map/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open recent earthquake information in a new tab"
+  >
+    <GiEarthCrack aria-hidden="true" />
+    <span className="resource-tooltip">
+      Earthquakes
+    </span>
+  </a>
+</nav>
+<footer className="site-footer">
+  <a href="/about" className="footer-link">
+    About
+  </a>
+
+  <span className="footer-divider">|</span>
+
+  <span>
+    Powered by: OpenWeather • AirNow • ODOT TripCheck
+  </span>
+
+  <span className="footer-divider">|</span>
+
+  <span className="footer-brand">
+    AGiv Lab
+  </span>
+
+  <span className="footer-divider">|</span>
+
+  <span className="footer-copyright">
+    © 2026 Oregon Trip Ready
+  </span>
+</footer>
+
       </Container>
     );
   }
