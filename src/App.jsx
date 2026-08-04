@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import logo from './assets/logo.png';
-import { FaCloudSun, FaMountain } from 'react-icons/fa';
+import { FaCamera, FaCloudSun, FaFire, FaMountain, FaRoad, FaWater } from 'react-icons/fa';
 import { GiEarthCrack } from 'react-icons/gi';
 import { MdThunderstorm } from 'react-icons/md';
 
@@ -63,31 +63,37 @@ class App extends React.Component {
     return (
       <Container as="main" className="trip-ready-page">
       <header className="page-header">
-  <img
-    src={logo}
-    alt="Oregon Trip Ready logo"
-    className="app-logo"
-  />
+  <div className="page-header-logo">
+    <img
+      src={logo}
+      alt="Oregon Trip Ready logo"
+      className="app-logo"
+    />
+  </div>
 
-  <h1>Oregon Trip Ready</h1>
-  <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+  <div className="page-header-content">
+    <h1>Oregon Trip Ready</h1>
+    <p>One search. Oregon conditions.</p>
+  </div>
 
-  <Form className="weather-search-form" onSubmit={this.handleSubmit}>
-    <Form.Group className="mb-3" controlId="destination">
-      <Form.Label>Oregon destination</Form.Label>
+  <div className="page-header-search">
+    <Form className="weather-search-form" onSubmit={this.handleSubmit}>
+      <Button className="search-button" type="submit" disabled={isLoading}>
+        {isLoading ? 'Searching...' : 'Search'}
+      </Button>
 
-      <Form.Control
-        type="text"
-        value={destination}
-        onChange={this.handleDestinationChange}
-        placeholder="Enter a city or destination"
-      />
-    </Form.Group>
+      <Form.Group className="mb-3" controlId="destination">
+        <Form.Label className="visually-hidden">Oregon destination</Form.Label>
 
-    <Button type="submit" disabled={isLoading}>
-      {isLoading ? 'Searching...' : 'Search Weather'}
-    </Button>
-  </Form>
+        <Form.Control
+          type="text"
+          value={destination}
+          onChange={this.handleDestinationChange}
+          placeholder="Enter an Oregon city or destination"
+        />
+      </Form.Group>
+    </Form>
+  </div>
 </header>  
 
  <section
@@ -100,7 +106,9 @@ class App extends React.Component {
     </div>
 
     <div className="primary-section-content">
-      <h2 id="weather-search-heading">Search Oregon Weather</h2>
+      <h2 id="weather-search-heading">Weather Conditions</h2>
+
+      {!conditions && <p>Search above to view current weather conditions.</p>}
 
       <p className="visually-hidden" role="status" aria-live="polite">
         {isLoading ? 'Weather information is loading.' : ''}
@@ -151,77 +159,116 @@ class App extends React.Component {
           className="information-section tripcheck-section"
           aria-labelledby="road-conditions-heading"
         >
-          <h2 id="road-conditions-heading">Oregon Road Conditions</h2>
-          <p>Check current road closures, incidents, weather conditions, and traffic cameras.</p>
-          <Button
-            href="https://tripcheck.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Check Road Conditions on TripCheck
-          </Button>
-          <p className="external-link-note">The official TripCheck map opens in a new tab.</p>
+          <div className="primary-section-layout">
+            <div className="primary-section-icon road-section-icon">
+              <FaRoad aria-hidden="true" />
+            </div>
+
+            <div className="primary-section-content">
+              <h2 id="road-conditions-heading">Road Conditions</h2>
+              <p>Road closures, incidents, weather impacts, and traffic cameras.</p>
+              <Button
+                className="road-button"
+                href="https://tripcheck.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open TripCheck
+              </Button>
+            </div>
+          </div>
         </section>
 
         <section
           className="information-section airnow-section"
           aria-labelledby="air-quality-heading"
         >
-          <h2 id="air-quality-heading">Air Quality and Wildfire Smoke</h2>
-          <p>View current air-quality and wildfire-smoke conditions for your destination.</p>
-          <Button
-            href="https://fire.airnow.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Check Air Quality on AirNow
-          </Button>
-          <p className="external-link-note">Opens the official AirNow map in a new tab.</p>
+          <div className="primary-section-layout">
+            <div className="primary-section-icon air-section-icon">
+              <FaFire aria-hidden="true" />
+            </div>
+
+            <div className="primary-section-content">
+              <h2 id="air-quality-heading">Air Quality</h2>
+              <p>Air quality, wildfire smoke, and AQI information.</p>
+              <Button
+                className="air-button"
+                href="https://fire.airnow.gov/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open AirNow
+              </Button>
+            </div>
+          </div>
         </section>
 
-        <nav
-  className="resource-links"
-  aria-label="Additional Oregon safety resources"
->
-  <a
-    className="resource-icon-link avalanche-link"
-    href="https://nwac.us/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Open avalanche information in a new tab"
-  >
-    <FaMountain aria-hidden="true" />
-    <span className="resource-tooltip">
-      Avalanche info
-    </span>
-  </a>
+        <section
+          className="information-section resources-section"
+          aria-labelledby="more-resources-heading"
+        >
+          <h2 id="more-resources-heading">More Resources</h2>
 
-  <a
-    className="resource-icon-link nws-link"
-    href="https://www.weather.gov/alerts"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Open National Weather Service alerts in a new tab"
-  >
-    <MdThunderstorm aria-hidden="true" />
-    <span className="resource-tooltip">
-      NWS Alerts
-    </span>
-  </a>
+          <nav
+            className="resource-links"
+            aria-label="Additional Oregon safety resources"
+          >
+            <a
+              className="resource-icon-link nws-link"
+              href="https://www.weather.gov/alerts"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open NWS alerts in a new tab"
+            >
+              <MdThunderstorm aria-hidden="true" />
+              <span className="resource-tooltip">NWS Alerts</span>
+            </a>
 
-  <a
-    className="resource-icon-link earthquake-link"
-    href="https://earthquake.usgs.gov/earthquakes/map/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Open recent earthquake information in a new tab"
-  >
-    <GiEarthCrack aria-hidden="true" />
-    <span className="resource-tooltip">
-      Earthquakes
-    </span>
-  </a>
-</nav>
+            <a
+              className="resource-icon-link camera-link"
+              href="https://tripcheck.com/DynamicReports/Report/Cameras"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Oregon road cameras in a new tab"
+            >
+              <FaCamera aria-hidden="true" />
+              <span className="resource-tooltip">Road Cameras</span>
+            </a>
+
+            <a
+              className="resource-icon-link coast-link"
+              href="https://www.weather.gov/marine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open coast conditions in a new tab"
+            >
+              <FaWater aria-hidden="true" />
+              <span className="resource-tooltip">Coast Conditions</span>
+            </a>
+
+            <a
+              className="resource-icon-link avalanche-link"
+              href="https://nwac.us/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open avalanche information in a new tab"
+            >
+              <FaMountain aria-hidden="true" />
+              <span className="resource-tooltip">Avalanche</span>
+            </a>
+
+            <a
+              className="resource-icon-link earthquake-link"
+              href="https://earthquake.usgs.gov/earthquakes/map/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open recent earthquake information in a new tab"
+            >
+              <GiEarthCrack aria-hidden="true" />
+              <span className="resource-tooltip">Earthquakes</span>
+            </a>
+          </nav>
+        </section>
 <footer className="site-footer">
   <a href="/about" className="footer-link">
     About

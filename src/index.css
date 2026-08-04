@@ -62,18 +62,25 @@ a:focus-visible {
 }
 
 .page-header {
+  display: grid;
+  grid-template-columns: 8.75rem minmax(12rem, 1fr) minmax(15rem, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  width: 100%;
   margin-bottom: 1.5rem;
-  padding: clamp(1.75rem, 5vw, 3.5rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem);
   color: #f3faf8;
   text-align: center;
-  background: var(--forest-green);
+  background: #2f5d46;
   border-color: var(--forest-green-dark);
 }
 
 .page-header h1 {
   margin: 0 0 0.75rem;
-  font-size: clamp(2rem, 7vw, 3.5rem);
+  color: #ffc928;
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .page-header p {
@@ -82,11 +89,68 @@ a:focus-visible {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
+.page-header-logo,
+.page-header-content,
+.page-header-search {
+  min-width: 0;
+}
+
 .app-logo {
   width: clamp(260px, 35vw, 380px);
   height: auto;
   display: block;
   margin: 0 auto 1.5rem;
+}
+
+.page-header .app-logo {
+  width: 8.75rem;
+  margin: 0;
+}
+
+.page-header .weather-search-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  justify-items: start;
+  gap: 0.5rem;
+  width: min(100%, 18rem);
+  max-width: 18rem;
+  margin: 0;
+  text-align: left;
+}
+
+.page-header .weather-search-form .mb-3 {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.page-header .weather-search-form .btn {
+  justify-self: end;
+}
+
+.page-header .weather-search-form .form-control {
+  color: #1f3b2d;
+  background-color: #eef6ee;
+  border-color: #829b87;
+}
+
+.page-header .weather-search-form .form-label {
+  color: #f3faf8;
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header .app-logo {
+    margin-inline: auto;
+  }
+
+  .page-header .weather-search-form {
+    width: min(100%, 18rem);
+    margin-inline: auto;
+  }
 }
 
 .weather-search-section,
@@ -118,8 +182,8 @@ a:focus-visible {
 }
 
 .weather-section-icon {
-  color: var(--forest-green-dark);
-  background: #fff7c7;
+  color: #fff;
+  background: #167b83;
   font-size: clamp(3rem, 8vw, 4.5rem);
 }
 
@@ -173,6 +237,26 @@ a:focus-visible {
   opacity: 1;
 }
 
+.search-button {
+  color: #1f3b2d;
+  background-color: #d9ead3;
+  border-color: #b8d2b8;
+  font-weight: 700;
+}
+
+.search-button:hover,
+.search-button:active,
+.btn-primary.search-button:first-child:active {
+  color: #1f3b2d;
+  background-color: #c8dfc1;
+  border-color: #9fbea0;
+}
+
+.search-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
 .weather-card {
   max-width: 38rem;
   margin: 1.5rem auto 0;
@@ -213,10 +297,61 @@ a:focus-visible {
   border-color: #b1a504;
 }
 
+.road-section-icon,
+.air-section-icon {
+  color: #fff;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+}
+
+.road-section-icon {
+  background: #d96b1b;
+}
+
+.road-button {
+  color: #fff;
+  background-color: #c65d12;
+  border-color: #a94d0c;
+}
+
+.road-button:hover,
+.road-button:active,
+.btn-primary.road-button:first-child:active {
+  color: #fff;
+  background-color: #a94708;
+  border-color: #873806;
+}
+
+.road-button:focus-visible {
+  outline: 3px solid #1f3b2d;
+  outline-offset: 3px;
+}
 
 .airnow-section {
   background: #f6c0bc;
   border-color: #f17777;
+}
+
+.air-section-icon {
+  background: #c94747;
+}
+
+.air-button {
+  color: #fff;
+  background-color: #b33a3a;
+  border-color: #963033;
+}
+
+.air-button:hover,
+.air-button:active,
+.btn-primary.air-button:first-child:active {
+  color: #fff;
+  background-color: #922d32;
+  border-color: #762329;
+}
+
+.air-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }
 
 .external-link-note {
@@ -271,12 +406,17 @@ a:focus-visible {
   }
 }
 
- .resource-links {
+.resources-section {
+  background: var(--moss-green);
+}
+
+.resource-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 3rem;
-  margin: 2.5rem 0 2rem;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin: 1.5rem 0 0;
 }
 
 .resource-icon-link {
@@ -309,6 +449,14 @@ a:focus-visible {
 
 .nws-link {
   color: #0e817c;
+}
+
+.camera-link {
+  color: #c65d12;
+}
+
+.coast-link {
+  color: #1676a3;
 }
 
 .earthquake-link {
