@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
 import logo from './assets/logo.png';
 import { FaCamera, FaCloudSun, FaFire, FaMountain, FaRoad, FaWater } from 'react-icons/fa';
 import { GiEarthCrack } from 'react-icons/gi';
@@ -15,11 +16,20 @@ class App extends React.Component {
     destination: '',
     conditions: null,
     errorMessage: '',
-    isLoading: false
+    isLoading: false,
+    showAboutModal: false
   };
 
   handleDestinationChange = (event) => {
     this.setState({ destination: event.target.value });
+  };
+
+  handleShowAboutModal = () => {
+    this.setState({ showAboutModal: true });
+  };
+
+  handleCloseAboutModal = () => {
+    this.setState({ showAboutModal: false });
   };
 
   handleSubmit = async (event) => {
@@ -58,7 +68,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { destination, conditions, errorMessage, isLoading } = this.state;
+    const { destination, conditions, errorMessage, isLoading, showAboutModal } = this.state;
 
     return (
       <Container as="main" className="trip-ready-page">
@@ -269,29 +279,60 @@ class App extends React.Component {
             </a>
           </nav>
         </section>
+
 <footer className="site-footer">
-  <a href="/about" className="footer-link">
+  <button
+    type="button"
+    className="footer-about-button"
+    onClick={this.handleShowAboutModal}
+  >
     About
-  </a>
+  </button>
 
   <span className="footer-divider">|</span>
 
-  <span>
-    Powered by: OpenWeather • AirNow • ODOT TripCheck
-  </span>
-
-  <span className="footer-divider">|</span>
-
-  <span className="footer-brand">
-    AGiv Lab
+  <span className="footer-source-group">
+    <strong>Official Data Sources</strong>
+    <span>OpenWeather • AirNow • TripCheck</span>
   </span>
 
   <span className="footer-divider">|</span>
 
   <span className="footer-copyright">
-    © 2026 Oregon Trip Ready
+    Created by <span className="footer-brand">AGiv Lab</span>
   </span>
 </footer>
+
+        <Modal
+          className="about-modal"
+          show={showAboutModal}
+          onHide={this.handleCloseAboutModal}
+          centered
+          restoreFocus
+          aria-labelledby="about-modal-title"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="about-modal-title">About Oregon Trip Ready</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <h3 className="about-modal-brand">Oregon Trip Ready</h3>
+            <p className="about-modal-tagline">One search. Better decisions.</p>
+            <p>
+              Oregon Trip Ready brings together current weather, road conditions, and air quality
+              from trusted public data sources—helping residents and visitors make informed
+              decisions before heading out.
+            </p>
+            <h4>Official Data Sources</h4>
+            <p className="about-modal-sources">OpenWeather • AirNow • TripCheck</p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button className="about-modal-close" onClick={this.handleCloseAboutModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
       </Container>
     );
