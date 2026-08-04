@@ -111,8 +111,8 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(6rem, 16vw, 8rem);
-  aspect-ratio: 1;
+  width: 5.25rem;
+  height: 5.25rem;
   border-radius: 50%;
   pointer-events: none;
 }

@@ -71,6 +71,23 @@ class App extends React.Component {
 
   <h1>Oregon Trip Ready</h1>
   <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+
+  <Form className="weather-search-form" onSubmit={this.handleSubmit}>
+    <Form.Group className="mb-3" controlId="destination">
+      <Form.Label>Oregon destination</Form.Label>
+
+      <Form.Control
+        type="text"
+        value={destination}
+        onChange={this.handleDestinationChange}
+        placeholder="Enter a city or destination"
+      />
+    </Form.Group>
+
+    <Button type="submit" disabled={isLoading}>
+      {isLoading ? 'Searching...' : 'Search Weather'}
+    </Button>
+  </Form>
 </header>  
 
  <section
@@ -84,23 +101,6 @@ class App extends React.Component {
 
     <div className="primary-section-content">
       <h2 id="weather-search-heading">Search Oregon Weather</h2>
-
-      <Form className="weather-search-form" onSubmit={this.handleSubmit}>
-        <Form.Group className="mb-3" controlId="destination">
-          <Form.Label>Oregon destination</Form.Label>
-
-          <Form.Control
-            type="text"
-            value={destination}
-            onChange={this.handleDestinationChange}
-            placeholder="Enter a city or destination"
-          />
-        </Form.Group>
-
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Searching...' : 'Search Weather'}
-        </Button>
-      </Form>
 
       <p className="visually-hidden" role="status" aria-live="polite">
         {isLoading ? 'Weather information is loading.' : ''}
