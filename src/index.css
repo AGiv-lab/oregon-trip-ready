@@ -84,6 +84,13 @@ a:focus-visible {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
+.app-logo {
+  width: clamp(260px, 35vw, 380px);
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
 .weather-search-section,
 .information-section {
   margin-bottom: 1.5rem;
@@ -91,7 +98,8 @@ a:focus-visible {
 }
 
 .weather-search-section {
-  background: var(--panel-white);
+  background: #e8f5f4;
+  border-color: #8fbec1;
 }
 
 .weather-search-section h2,
@@ -176,13 +184,14 @@ a:focus-visible {
 }
 
 .tripcheck-section {
-  background: var(--road-panel);
-  border-color: #a8b999;
+  background: #f1eca6;
+  border-color: #9fbc97;
 }
 
+
 .airnow-section {
-  background: var(--air-panel);
-  border-color: #9dbabd;
+  background: #f0cab4;
+  border-color: #e98b66;
 }
 
 .external-link-note {

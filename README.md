@@ -1,5 +1,7 @@
 # Oregon Trip Ready
 
+![Oregon Trip Ready](image.png)
+
 > A one-stop starting point for checking conditions before traveling to an Oregon destination.
 
 ---

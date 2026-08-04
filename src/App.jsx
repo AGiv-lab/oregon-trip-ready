@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import logo from './assets/logo.png';
+import { FaMountain } from 'react-icons/fa';
+import { GiEarthCrack } from 'react-icons/gi';
+import { MdThunderstorm } from 'react-icons/md';
 
 class App extends React.Component {
   state = {
@@ -58,10 +62,16 @@ class App extends React.Component {
 
     return (
       <Container as="main" className="trip-ready-page">
-        <header className="page-header">
-          <h1>Oregon Trip Ready</h1>
-          <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
-        </header>
+      <header className="page-header">
+  <img
+    src={logo}
+    alt="Oregon Trip Ready logo"
+    className="app-logo"
+  />
+
+  <h1>Oregon Trip Ready</h1>
+  <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+</header>  
 
         <section className="weather-search-section" aria-labelledby="weather-search-heading">
           <h2 id="weather-search-heading">Search Oregon Weather</h2>
