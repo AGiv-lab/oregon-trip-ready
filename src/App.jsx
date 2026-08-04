@@ -57,13 +57,15 @@ class App extends React.Component {
     const { destination, conditions, errorMessage, isLoading } = this.state;
 
     return (
-      <Container className="py-5 text-center">
-        <h1>Oregon Trip Ready</h1>
-        <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+      <Container as="main" className="trip-ready-page">
+        <header className="page-header">
+          <h1>Oregon Trip Ready</h1>
+          <p>Check Oregon weather, air quality, and road conditions before you travel.</p>
+        </header>
 
-        <section className="mb-5" aria-labelledby="weather-search-heading">
+        <section className="weather-search-section" aria-labelledby="weather-search-heading">
           <h2 id="weather-search-heading">Search Oregon Weather</h2>
-          <Form className="mx-auto mb-4" onSubmit={this.handleSubmit}>
+          <Form className="weather-search-form" onSubmit={this.handleSubmit}>
             <Form.Group className="mb-3" controlId="destination">
               <Form.Label>Oregon destination</Form.Label>
               <Form.Control
@@ -78,16 +80,24 @@ class App extends React.Component {
             </Button>
           </Form>
 
+          <p className="visually-hidden" role="status" aria-live="polite">
+            {isLoading ? 'Weather information is loading.' : ''}
+          </p>
+
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
           {conditions && (
-            <Card className="mx-auto">
+            <Card
+              className="weather-card"
+              role="region"
+              aria-labelledby="weather-result-heading"
+            >
               <Card.Body>
-                <Card.Title>
+                <Card.Title as="h3" id="weather-result-heading">
                   {conditions.destination}, {conditions.state}
                 </Card.Title>
                 <Card.Text as="div">
-                  <dl>
+                  <dl className="weather-details-grid">
                     <dt>Temperature</dt>
                     <dd>{Math.round(conditions.weather.temperature)}°F</dd>
                     <dt>Feels like</dt>
@@ -107,8 +117,11 @@ class App extends React.Component {
           )}
         </section>
 
-        <section className="mb-5">
-          <h2>Oregon Road Conditions</h2>
+        <section
+          className="information-section tripcheck-section"
+          aria-labelledby="road-conditions-heading"
+        >
+          <h2 id="road-conditions-heading">Oregon Road Conditions</h2>
           <p>Check current road closures, incidents, weather conditions, and traffic cameras.</p>
           <Button
             href="https://tripcheck.com/"
@@ -117,11 +130,14 @@ class App extends React.Component {
           >
             Check Road Conditions on TripCheck
           </Button>
-          <p>The official TripCheck map opens in a new tab.</p>
+          <p className="external-link-note">The official TripCheck map opens in a new tab.</p>
         </section>
 
-        <section>
-          <h2>Air Quality and Wildfire Smoke</h2>
+        <section
+          className="information-section airnow-section"
+          aria-labelledby="air-quality-heading"
+        >
+          <h2 id="air-quality-heading">Air Quality and Wildfire Smoke</h2>
           <p>View current air-quality and wildfire-smoke conditions for your destination.</p>
           <Button
             href="https://fire.airnow.gov/"
@@ -130,7 +146,7 @@ class App extends React.Component {
           >
             Check Air Quality on AirNow
           </Button>
-          <p>Opens the official AirNow map in a new tab.</p>
+          <p className="external-link-note">Opens the official AirNow map in a new tab.</p>
         </section>
       </Container>
     );
