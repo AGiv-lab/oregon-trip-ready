@@ -1,13 +1,54 @@
 # Oregon Trip Ready
 
-![Oregon Trip Ready](image.png)
+<p align="center">
+  <img
+    src="docs/images/logo.png"
+    alt="Oregon Trip Ready Logo"
+    width="220"
+  >
+</p>
 
-> A one-stop starting point for checking conditions before traveling to an Oregon destination.
 
----
+> A responsive travel-planning application that helps Oregon residents and visitors quickly check weather conditions and access official road, air quality, and hazard resources before traveling.
+
+## Features
+
+- Oregon destination weather search
+- Responsive mobile-first design
+- Accessible interface
+- Road Conditions (TripCheck)
+- Air Quality & Wildfire (AirNow)
+- More Resources icon panel
+- About modal
+
+## Built With
+
+- React
+- Vite
+- JavaScript
+- CSS
+- React Bootstrap
+- React Icons
+- Axios
+- Express
+- Node.js
+- OpenWeather API
+
+## Accessibility
+
+### Production Lighthouse Results
+
+![Lighthouse Accessibility Results](docs/images/lighthouse.png)
+
+- Accessibility: 100
+
+The accessibility audit was run against the Vite production preview build using Chrome Lighthouse.
 
 ## Table of Contents
 
+- [Features](#features)
+- [Built With](#built-with)
+- [Accessibility](#accessibility)
 - [Vision](#vision)
 - [Project Scope](#project-scope)
 - [Minimum Viable Product](#minimum-viable-product)
@@ -20,7 +61,9 @@
 - [Security](#security)
 - [Limitations and Disclaimer](#limitations-and-disclaimer)
 - [Domain Model](#domain-model)
+- [Function Relationships](#function-relationships)
 - [Future Improvements](#future-improvements)
+- [License](#license)
 
 ---
 
@@ -34,7 +77,7 @@ The application addresses the inconvenience of searching several unrelated websi
 
 ### Included
 
-Oregon Trip Ready will:
+Oregon Trip Ready:
 
 - Allow users to search for an Oregon destination.
 - Display current weather from the OpenWeather API.
@@ -46,7 +89,7 @@ Oregon Trip Ready will:
 
 ### Not Included
 
-The MVP will not:
+The completed application does not:
 
 - Decide whether a user should travel.
 - Replace official emergency warnings or instructions.
@@ -61,14 +104,14 @@ The MVP allows a user to enter an Oregon destination in a search bar. The fronte
 
 ### MVP Features
 
-- [ ] Oregon destination search
-- [ ] Current weather results
-- [ ] Loading indicator
-- [ ] Invalid-location message
-- [ ] API and unavailable-data messages
-- [ ] Responsive results display
-- [ ] Accessible form controls and results
-- [ ] AirNow external-resource button
+- [x] Oregon destination search
+- [x] Current weather results
+- [x] Loading indicator
+- [x] Invalid-location message
+- [x] API and unavailable-data messages
+- [x] Responsive results display
+- [x] Accessible form controls and results
+- [x] AirNow external-resource button
 
 ## User Stories
 
@@ -156,32 +199,32 @@ flowchart TD
 
 ## Stretch Goals
 
-The AirNow Fire and Smoke Map button is part of the MVP. If time permits, the application will also provide accessible icon links to TripCheck, NWS weather hazards, Oregon avalanche forecasts and USGS earthquake information. These additional links will:
+The AirNow Fire and Smoke Map button is part of the MVP. The completed application also provides accessible icon links to TripCheck, NWS weather hazards, Oregon avalanche forecasts and USGS earthquake information. These additional links:
 
 - Use visible, descriptive text instead of relying on an icon alone.
 - Be accessible by keyboard.
 - Open the official resource in a new browser tab.
 - Leave the Oregon Trip Ready application open.
 
-The external websites' data will not be processed by Oregon Trip Ready during the MVP.
+The external websites' data is not processed by Oregon Trip Ready.
 
 ## Non-Functional Requirements
 
 ### Accessibility
 
-The application will use semantic HTML, associated form labels, keyboard-accessible controls, and descriptive link text. Decorative React icons will be hidden from screen readers, while meaningful icon links will have accessible names.
+The application uses semantic HTML, associated form labels, keyboard-accessible controls, and descriptive link text. Decorative React icons are hidden from screen readers, while meaningful icon links have accessible names.
 
-The completed application will be evaluated with Lighthouse or another browser accessibility tool. A screenshot of the accessibility results will be included in the README.
+The completed application was evaluated with Chrome Lighthouse against the Vite production preview build. The production accessibility result and screenshot are included above.
 
 ### Usability
 
-The application will use a mobile-first layout with a prominent search bar and concise condition panels. Loading, error, and unavailable-data messages will explain the application's current state. External links will use recognizable icons with visible labels.
+The application uses a mobile-first layout with a prominent search bar and concise condition panels. Loading, error, and unavailable-data messages explain the application's current state. External links use recognizable icons with visible labels.
 
 ## Security
 
-API keys will be stored in backend environment variables and will not be committed to GitHub. The frontend will request information through the backend instead of exposing private API keys in browser code.
+API keys are stored in backend environment variables and are not committed to GitHub. The frontend requests information through the backend instead of exposing private API keys in browser code.
 
-The `.env` file will remain listed in `.gitignore`. An `.env.example` file may document the required variable names without including secret values.
+The `.env` file remains listed in `.gitignore`. An `.env.example` file can document the required variable names without including secret values.
 
 ## Limitations and Disclaimer
 
@@ -321,3 +364,9 @@ flowchart TD
 ## Future Improvements
 
 Some older AirNow current-observation API services are scheduled for retirement in fall 2026. For the MVP, Oregon Trip Ready links users directly to AirNow for current air-quality and wildfire-smoke information. A future version may restore in-app AQI results after a stable replacement service and appropriate caching are implemented.
+
+## License
+
+This project is licensed under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
