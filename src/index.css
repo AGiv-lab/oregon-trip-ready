@@ -410,6 +410,36 @@ a:focus-visible {
   }
 }
 
+@media (max-width: 30rem) {
+  .page-header {
+    gap: 1rem;
+  }
+
+  .page-header .app-logo {
+    width: 7.875rem;
+  }
+
+  .page-header .weather-search-form {
+    justify-items: center;
+  }
+
+  .page-header .weather-search-form .mb-3 {
+    order: 1;
+  }
+
+  .page-header .weather-search-form .btn {
+    order: 2;
+    justify-self: center;
+    width: 65%;
+  }
+
+  .weather-section-icon {
+    width: 4.625rem;
+    height: 4.625rem;
+    font-size: 2.625rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -423,6 +453,10 @@ a:focus-visible {
 
 .resources-section {
   background: var(--moss-green);
+}
+
+.resources-section h2 {
+  text-align: center;
 }
 
 .resource-links {

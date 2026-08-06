@@ -74,12 +74,14 @@ class App extends React.Component {
       <Container as="main" className="trip-ready-page">
       <header className="page-header">
   <div className="page-header-logo">
-    <img
-      src={logo}
-      alt="Oregon Trip Ready logo"
-      className="app-logo"
-    />
-  </div>
+  <img
+    src={logo}
+    alt="Oregon Trip Ready logo"
+    className="app-logo"
+    width="158"
+    height="158"
+  />
+</div>
 
   <div className="page-header-content">
     <h1>Oregon Trip Ready</h1>
