@@ -113,7 +113,7 @@ Only current weather is retrieved through the Oregon Trip Ready backend. The oth
 - Route and road-condition APIs when stable public access is available
 - Embedded road cameras
 - Current-location support
-- Saved or favorite destinations
+- Saved or favorite destinations, Auth0
 - Additional Oregon and Pacific Northwest travel resources
 
 ---
