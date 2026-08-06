@@ -118,8 +118,6 @@ class App extends React.Component {
     <div className="primary-section-content">
       <h2 id="weather-search-heading">Weather Conditions</h2>
 
-      {!conditions && <p>Search above to view current weather conditions.</p>}
-
       <p className="visually-hidden" role="status" aria-live="polite">
         {isLoading ? 'Weather information is loading.' : ''}
       </p>
@@ -138,24 +136,25 @@ class App extends React.Component {
             </Card.Title>
 
             <Card.Text as="div">
+              <div className="weather-temperature">
+                <span className="visually-hidden">Temperature: </span>
+                {Math.round(conditions.weather.temperature)}°F
+              </div>
+              <p className="weather-condition">{conditions.weather.condition}</p>
+
               <dl className="weather-details-grid">
-                <dt>Temperature</dt>
-                <dd>{Math.round(conditions.weather.temperature)}°F</dd>
-
-                <dt>Feels like</dt>
-                <dd>{Math.round(conditions.weather.feelsLike)}°F</dd>
-
-                <dt>Humidity</dt>
-                <dd>{conditions.weather.humidity}%</dd>
-
-                <dt>Condition</dt>
-                <dd>{conditions.weather.condition}</dd>
-
-                <dt>Description</dt>
-                <dd>{conditions.weather.description}</dd>
-
-                <dt>Wind speed</dt>
-                <dd>{Math.round(conditions.weather.windSpeed)} mph</dd>
+                <div>
+                  <dt>Feels Like</dt>
+                  <dd>{Math.round(conditions.weather.feelsLike)}°F</dd>
+                </div>
+                <div>
+                  <dt>Humidity</dt>
+                  <dd>{conditions.weather.humidity}%</dd>
+                </div>
+                <div>
+                  <dt>Wind</dt>
+                  <dd>{Math.round(conditions.weather.windSpeed)} mph</dd>
+                </div>
               </dl>
             </Card.Text>
           </Card.Body>
@@ -176,7 +175,7 @@ class App extends React.Component {
 
             <div className="primary-section-content">
               <h2 id="road-conditions-heading">Road Conditions</h2>
-              <p>Road closures, incidents, weather impacts, and traffic cameras.</p>
+              <p>Road closures, incidents, weather impacts, and cameras.</p>
               <Button
                 className="road-button"
                 href="https://tripcheck.com/"
@@ -289,18 +288,7 @@ class App extends React.Component {
     About
   </button>
 
-  <span className="footer-divider">|</span>
-
-  <span className="footer-source-group">
-    <strong>Official Data Sources</strong>
-    <span>OpenWeather • AirNow • TripCheck</span>
-  </span>
-
-  <span className="footer-divider">|</span>
-
-  <span className="footer-copyright">
-    Created by <span className="footer-brand">AGiv Lab</span>
-  </span>
+  <span className="footer-copyright">2026 AGiv Lab</span>
 </footer>
 
         <Modal

@@ -1,6 +1,6 @@
 :root {
   --forest-green: #15533d;
-  --forest-green-dark: #093a29;
+  --forest-green-dark: #0b4933;
   --moss-green: #dce8dc;
   --warm-white: #f8f5ed;
   --panel-white: #fffdf8;
@@ -71,13 +71,13 @@ a:focus-visible {
   padding: clamp(0.75rem, 2vw, 1.25rem);
   color: #f3faf8;
   text-align: center;
-  background: #2f5d46;
+  background: #065c31;
   border-color: var(--forest-green-dark);
 }
 
 .page-header h1 {
   margin: 0 0 0.75rem;
-  color: #ffc928;
+  color: #eed54a;
   font-size: clamp(1.6rem, 2.5vw, 2rem);
   line-height: 1.1;
   white-space: nowrap;
@@ -160,7 +160,7 @@ a:focus-visible {
 }
 
 .weather-search-section {
-  background: #bee8f3;
+  background: #d0ebf1;
   border-color: #8fbec1;
 }
 
@@ -182,7 +182,7 @@ a:focus-visible {
 }
 
 .weather-section-icon {
-  color: #fff;
+  color: #ffffff;
   background: #167b83;
   font-size: clamp(3rem, 8vw, 4.5rem);
 }
@@ -212,7 +212,7 @@ a:focus-visible {
   min-height: 2.75rem;
   color: var(--text-color);
   background-color: #fff;
-  border-color: #718878;
+  border-color: #5f9970;
 }
 
 .btn-primary {
@@ -261,29 +261,48 @@ a:focus-visible {
   max-width: 38rem;
   margin: 1.5rem auto 0;
   text-align: left;
-  background: var(--moss-green);
-  border-color: #02413b;
+  background: #edf8fc;
+  border: 1px solid #c6e7ef;
+  border-radius: 1rem;
 }
 
 .weather-card .card-title {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.35rem;
   color: var(--forest-green-dark);
-  font-size: 1.35rem;
+  font-size: clamp(1.55rem, 4vw, 2rem);
+  font-weight: 700;
+}
+
+.weather-temperature {
+  color: var(--text-color);
+  font-size: clamp(2.5rem, 8vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.weather-condition {
+  margin: 0.35rem 0 1.25rem;
+  color: var(--muted-text);
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 
 .weather-details-grid {
   display: grid;
-  grid-template-columns: minmax(8rem, 1fr) minmax(10rem, 1.5fr);
-  gap: 0.65rem 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   margin: 0;
 }
 
 .weather-details-grid dt {
   color: var(--forest-green-dark);
+  font-size: 0.9rem;
 }
 
 .weather-details-grid dd {
-  margin: 0;
+  margin: 0.2rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 .information-section p {
@@ -293,7 +312,7 @@ a:focus-visible {
 }
 
 .tripcheck-section {
-  background:  #f6eaa6;
+  background:  #f3ebbf;
   border-color: #b1a504;
 }
 
@@ -310,7 +329,7 @@ a:focus-visible {
 .road-button {
   color: #fff;
   background-color: #c65d12;
-  border-color: #a94d0c;
+  border-color: #a85a23;
 }
 
 .road-button:hover,
@@ -327,8 +346,8 @@ a:focus-visible {
 }
 
 .airnow-section {
-  background: #f6c0bc;
-  border-color: #f17777;
+  background: #f0c9ba;
+  border-color: #f18f77;
 }
 
 .air-section-icon {
@@ -337,8 +356,8 @@ a:focus-visible {
 
 .air-button {
   color: #fff;
-  background-color: #b33a3a;
-  border-color: #963033;
+  background-color: #c94747;
+  border-color: #a03d40;
 }
 
 .air-button:hover,
@@ -382,11 +401,7 @@ a:focus-visible {
 
   .weather-details-grid {
     grid-template-columns: 1fr;
-    gap: 0.15rem;
-  }
-
-  .weather-details-grid dd:not(:last-child) {
-    margin-bottom: 0.75rem;
+    gap: 0.75rem;
   }
 
   .btn {
@@ -460,7 +475,7 @@ a:focus-visible {
 }
 
 .earthquake-link {
-  color: #4b2b17;
+  color: #693819;
 }
 
 .resource-tooltip {
@@ -472,7 +487,7 @@ a:focus-visible {
   max-width: 14rem;
   padding: 0.6rem 0.9rem;
   border-radius: 0.5rem;
-  color: #f3faf8;
+  color: #eff5f4;
   background: var(--forest-green-dark);
   font-size: 1.1rem;
   font-weight: 600;
@@ -529,7 +544,7 @@ a:focus-visible {
   border-top: 1px solid var(--border-color);
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -540,7 +555,7 @@ a:focus-visible {
 
 .footer-about-button {
   padding: 0.45rem 0.85rem;
-  color: #9a6b00;
+  color: #af7c05;
   background: transparent;
   border: 2px solid #d8b547;
   border-radius: 0.5rem;
@@ -550,7 +565,7 @@ a:focus-visible {
 .footer-about-button:hover,
 .footer-about-button:active {
   color: var(--forest-green-dark);
-  background: #fff4c4;
+  background: #f0e7c0;
   border-color: #b99225;
 }
 
@@ -559,23 +574,10 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-.footer-source-group {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.footer-brand {
+.footer-copyright {
   color: var(--forest-green-dark);
   font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.footer-divider {
-  color: var(--border-color);
-}
-
-.footer-copyright {
+  letter-spacing: 0.08em;
   white-space: nowrap;
 }
 
@@ -599,7 +601,7 @@ a:focus-visible {
 }
 
 .about-modal .modal-title {
-  color: #ffc928;
+  color: #e6b41e;
   font-weight: 700;
 }
 
