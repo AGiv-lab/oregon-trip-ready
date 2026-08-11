@@ -23,10 +23,24 @@ Oregon Trip Ready is a responsive web application for Oregon residents and visit
 Planning travel in Oregon often requires checking several separate weather, road, air-quality, and hazard websites. Oregon Trip Ready provides one starting point for current weather and direct links to trusted official resources.
 
 ---
+## User Stories
 
-## User Story
+As an Oregon resident or visitor, I want to:
 
-**As an Oregon resident or visitor, I want to search a destination and quickly view current weather and official condition resources so I can make informed decisions before leaving.**
+- **Search Oregon destinations** so that I can quickly check conditions for the area I am traveling to.
+- **View current weather** for my destination so that I can prepare appropriately before leaving.
+- **Access TripCheck road conditions** so that I can check closures, incidents, weather impacts, and road cameras before traveling.
+- **Access air-quality and wildfire information** so that I can check smoke, fires, and air conditions before traveling.
+- **Access National Weather Service alerts** so that I can check for potentially hazardous weather conditions.
+- **View Oregon road cameras** so that I can visually check current road and traffic conditions.
+- **Check Oregon coast conditions** so that I can review weather and marine conditions before visiting the coast.
+- **Access avalanche information** so that I can check current mountain hazards before traveling or recreating in affected areas.
+- **View recent USGS earthquake information** so that I can check seismic activity that could affect my plans.
+
+Additional accessibility and application-information user stories:
+
+- **As a user who navigates with a keyboard or assistive technology**, I want clearly labeled and keyboard-accessible controls so that I can use Oregon Trip Ready without relying on a mouse.
+- **As a user**, I want to understand what Oregon Trip Ready does and where its information comes from so that I can understand the purpose and limitations of the application.
 
 ---
 
